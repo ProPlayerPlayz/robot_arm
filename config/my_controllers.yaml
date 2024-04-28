@@ -1,0 +1,52 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30
+    use_sim_time: true
+
+    # List of controllers to load
+    arm_cont:
+      type: "robot_arm/ArmController"
+
+    joint_broad:
+      type: "joint_state_controller/JointStateController"
+    
+
+# Parameters for the controllers
+arm_cont:
+  type: "robot_arm/ArmController"
+  joints:
+    - shoulder_joint
+    - upper_arm_joint
+    - elbow_joint
+    - forearm_joint
+    - gripper_joint
+  joint_state_topic: "joint_states"
+  action_topic: "follow_joint_trajectory"
+  robot_description: "robot_description"
+  
+  # PID gains for the controller
+  shoulder_joint:
+    p: 100.0
+    i: 0.01
+    d: 10.0
+    i_clamp: 1.0
+  upper_arm_joint:
+    p: 100.0
+    i: 0.01
+    d: 10.0
+    i_clamp: 1.0
+  elbow_joint:
+    p: 100.0
+    i: 0.01
+    d: 10.0
+    i_clamp: 1.0
+  forearm_joint:
+    p: 100.0
+    i: 0.01
+    d: 10.0
+    i_clamp: 1.0
+  gripper_joint:
+    p: 100.0
+    i: 0.01
+    d: 10.0
+    i_clamp: 1.0

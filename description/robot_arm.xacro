@@ -3,6 +3,26 @@
 
     <xacro:include filename="inertial_macros.xacro" />
 
+    <!-- Materials for Color -->
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+    <material name="yellow">
+        <color rgba="1 1 0 1"/>
+    </material>
+    <material name="sky_blue">
+        <color rgba="0.529 0.808 0.922 1"/>
+    </material>
+    <material name="green">
+        <color rgba="0 1 0 1"/>
+    </material>
+    <material name="purple">
+        <color rgba="0.902 0.902 0.980 1"/>
+    </material>
+
     <!-- Configurable Values -->
     <!-- Base -->
     <xacro:property name="base_length" value="0.1" />
@@ -36,6 +56,7 @@
             <geometry>
                 <cylinder length="${base_length}" radius="${base_radius}"/>
             </geometry>
+            <material name="white"/>
         </visual>
         <collision>
             <origin xyz="0 0 ${base_length/2}" rpy="0 0 0"/>
@@ -47,6 +68,11 @@
             <origin xyz="0 0 ${base_length/2}" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="base">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- =================================================================================== -->
 
     <joint name="shoulder_joint" type="revolute">
         <parent link="base"/>
@@ -61,6 +87,7 @@
             <geometry>
                 <cylinder length="${shoulder_length}" radius="${shoulder_radius}"/>
             </geometry>
+            <material name="red"/>
         </visual>
         <collision>
             <origin xyz="0 0 ${shoulder_length/2}" rpy="0 0 0"/>
@@ -72,6 +99,11 @@
             <origin xyz="0 0 ${shoulder_length/2}" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="shoulder">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- =================================================================================== -->
 
     <joint name="upperarm_joint" type="revolute">
         <parent link="shoulder"/>
@@ -86,6 +118,7 @@
             <geometry>
                 <cylinder length="${upperarm_length}" radius="${upperarm_radius}"/>
             </geometry>
+            <material name="yellow"/>
         </visual>
         <collision>
             <origin xyz="0 0 ${upperarm_length/2}" rpy="0 0 0"/>
@@ -97,6 +130,11 @@
             <origin xyz="0 0 ${upperarm_length/2}" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="upperarm">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <!-- =================================================================================== -->
 
     <joint name="elbow_joint" type="revolute">
         <parent link="upperarm"/>
@@ -111,6 +149,7 @@
             <geometry>
                 <cylinder length="${elbow_length}" radius="${elbow_radius}"/>
             </geometry>
+            <material name="sky_blue"/>
         </visual>
         <collision>
             <origin xyz="0 0 ${elbow_length/2}" rpy="0 0 0"/>
@@ -122,6 +161,11 @@
             <origin xyz="0 0 ${elbow_length/2}" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="elbow">
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+    
+    <!-- =================================================================================== -->
 
     <joint name="forearm_joint" type="revolute">
         <parent link="elbow"/>
@@ -136,6 +180,7 @@
             <geometry>
                 <cylinder length="${forearm_length}" radius="${forearm_radius}"/>
             </geometry>
+            <material name="green"/>
         </visual>
         <collision>
             <origin xyz="0 0 ${forearm_length/2}" rpy="0 0 0"/>
@@ -147,6 +192,11 @@
             <origin xyz="0 0 ${forearm_length/2}" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="forearm">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <!-- =================================================================================== -->
 
     <joint name="gripper_joint" type="fixed">
         <parent link="forearm"/>
@@ -159,6 +209,7 @@
             <geometry>
                 <box size="${gripper_length} ${gripper_length} ${gripper_length}"/>
             </geometry>
+            <material name="purple"/>
         </visual>
         <collision>
             <origin xyz="0 0 ${gripper_length/2}" rpy="0 0 0"/>
@@ -170,4 +221,10 @@
             <origin xyz="0 0 ${gripper_length/2}" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+    <gazebo reference="gripper">
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <!-- =================================================================================== -->
+
 </robot>
