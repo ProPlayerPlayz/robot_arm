@@ -32,10 +32,10 @@
     </ros2_control>
 
     <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros2_control.so">
-            <parameters>
-                
-            </parameters>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+                <parameters>
+                    $(find gazebo_ros2_control_demos)/config/my_controllers.yaml
+                </parameters>
         </plugin>
     </gazebo>
 
