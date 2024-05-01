@@ -7,34 +7,38 @@
         </hardware>
         <joint name="shoulder_joint">
             <command_interface>position</command_interface>
+                <param name="min">-10</param>
+                <param name="min">10</param>
             <state_interface>position</state_interface>
             <state_interface>velocity</state_interface>
-            <state_interface>effort</state_interface>
         </joint>
         <joint name="upperarm_joint">
             <command_interface>position</command_interface>
+                <param name="min">-10</param>
+                <param name="min">10</param>
             <state_interface>position</state_interface>
             <state_interface>velocity</state_interface>
-            <state_interface>effort</state_interface>
         </joint>
         <joint name="elbow_joint">
             <command_interface>position</command_interface>
+                <param name="min">-10</param>
+                <param name="min">10</param>
             <state_interface>position</state_interface>
             <state_interface>velocity</state_interface>
-            <state_interface>effort</state_interface>
         </joint>
         <joint name="forearm_joint">
             <command_interface>position</command_interface>
+                <param name="min">-10</param>
+                <param name="min">10</param>
             <state_interface>position</state_interface>
             <state_interface>velocity</state_interface>
-            <state_interface>effort</state_interface>
         </joint>
     </ros2_control>
 
     <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
                 <parameters>
-                    $(find gazebo_ros2_control_demos)/config/my_controllers.yaml
+                    $(find robot_arm)/config/my_controllers.yaml
                 </parameters>
         </plugin>
     </gazebo>
