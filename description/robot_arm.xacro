@@ -25,19 +25,19 @@
 
     <!-- Configurable Values -->
     <!-- Base -->
-    <xacro:property name="base_length" value="0.1" />
-    <xacro:property name="base_radius" value="0.1" />
+    <xacro:property name="base_length" value="0.11" />
+    <xacro:property name="base_radius" value="0.12" />
     <!-- Link1 -->
-    <xacro:property name="shoulder_length" value="0.1" />
+    <xacro:property name="shoulder_length" value="0.15" />
     <xacro:property name="shoulder_radius" value="0.07" />
     <!-- Link2 -->
-    <xacro:property name="upperarm_length" value="0.2" />
+    <xacro:property name="upperarm_length" value="0.3" />
     <xacro:property name="upperarm_radius" value="0.06" />
     <!-- Link3 -->
-    <xacro:property name="elbow_length" value="0.05" />
+    <xacro:property name="elbow_length" value="0.1" />
     <xacro:property name="elbow_radius" value="0.05" />
     <!-- Link4 -->
-    <xacro:property name="forearm_length" value="0.1" />
+    <xacro:property name="forearm_length" value="0.15" />
     <xacro:property name="forearm_radius" value="0.05" />
     <!-- Gripper -->
     <xacro:property name="gripper_length" value="0.05" />
@@ -79,7 +79,7 @@
         <child link="shoulder"/>
         <origin xyz="0 0 ${base_length}" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-3.1416" upper="3.1416" effort="100" velocity="0.1"/>
+        <limit lower="-1.570796326795" upper="1.570796326795" effort="100" velocity="0.5"/>
     </joint>
     <link name="shoulder">
         <visual>
@@ -89,10 +89,24 @@
             </geometry>
             <material name="red"/>
         </visual>
+        <visual>
+            <origin xyz="0 0 ${shoulder_length}" rpy="0 -${pi/2} 0"/>
+            <geometry>
+                <cylinder length="${shoulder_radius*2}" radius="${shoulder_radius}"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+
         <collision>
             <origin xyz="0 0 ${shoulder_length/2}" rpy="0 0 0"/>
             <geometry>
                 <cylinder length="${shoulder_length}" radius="${shoulder_radius}"/>
+            </geometry>
+        </collision>
+        <collision>
+            <origin xyz="0 0 ${shoulder_length}" rpy="0 -${pi/2} 0"/>
+            <geometry>
+                <cylinder length="${shoulder_radius*2}" radius="${shoulder_radius}"/>
             </geometry>
         </collision>
         <xacro:inertial_cylinder mass="1" length="${shoulder_length}" radius="${shoulder_radius}">
@@ -110,7 +124,7 @@
         <child link="upperarm"/>
         <origin xyz="0 0 ${shoulder_length}" rpy="0 0 0"/>
         <axis xyz="1 0 0"/>
-        <limit lower="-3.1416" upper="3.1416" effort="100" velocity="0.1"/>
+        <limit lower="-1.570796326795" upper="0.5235987755983333" effort="100" velocity="0.5"/>
     </joint>
     <link name="upperarm">
         <visual>
@@ -120,12 +134,27 @@
             </geometry>
             <material name="yellow"/>
         </visual>
+        <visual>
+            <origin xyz="0 0 ${upperarm_length}" rpy="0 -${pi/2} 0"/>
+            <geometry>
+                <cylinder length="${upperarm_radius*2}" radius="${upperarm_radius}"/>
+            </geometry>
+            <material name="yellow"/>
+        </visual>
+        
         <collision>
             <origin xyz="0 0 ${upperarm_length/2}" rpy="0 0 0"/>
             <geometry>
                 <cylinder length="${upperarm_length}" radius="${upperarm_radius}"/>
             </geometry>
         </collision>
+        <collision>
+            <origin xyz="0 0 ${upperarm_length}" rpy="0 -${pi/2} 0"/>
+            <geometry>
+                <cylinder length="${upperarm_radius*2}" radius="${upperarm_radius}"/>
+            </geometry>
+        </collision>
+
         <xacro:inertial_cylinder mass="1" length="${upperarm_length}" radius="${upperarm_radius}">
             <origin xyz="0 0 ${upperarm_length/2}" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
@@ -141,7 +170,7 @@
         <child link="elbow"/>
         <origin xyz="0 0 ${upperarm_length}" rpy="0 0 0"/>
         <axis xyz="1 0 0"/>
-        <limit lower="-3.1416" upper="3.1416" effort="100" velocity="0.1"/>
+        <limit lower="-1.570796326795" upper="0.5235987755983333" effort="100" velocity="0.5"/>
     </joint>
     <link name="elbow">
         <visual>
@@ -172,7 +201,7 @@
         <child link="forearm"/>
         <origin xyz="0 0 ${elbow_length}" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-3.1416" upper="3.1416" effort="100" velocity="0.1"/>
+        <limit lower="-3.14159265359" upper="3.14159265359" effort="100" velocity="0.5"/>
     </joint>
     <link name="forearm">
         <visual>
