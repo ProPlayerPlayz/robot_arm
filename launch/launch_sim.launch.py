@@ -31,23 +31,23 @@ def generate_launch_description():
                                    '-entity', 'robot_arm',],
                         output='screen')
 
-#    joint_trajectory_controller_spawner = Node(
-#        package="controller_manager",
-#        executable="spawner.py",
-#       arguments=["joint_trajectory_controller"],
-#   )
+    joint_trajectory_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+       arguments=["joint_trajectory_controller"],
+   )
 
-#    joint_state_broadcaster_spawner = Node(
-#        package="controller_manager",
-#        executable="spawner.py",
-#        arguments=["joint_state_broadcaster"],
-#    )
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster"],
+    )
 
     # Launch them all!
     return LaunchDescription([
         rsp,
         gazebo,
-        spawn_entity
-        #joint_trajectory_controller_spawner,
-        #joint_state_broadcaster_spawner
+        spawn_entity,
+        joint_trajectory_controller_spawner,
+        joint_state_broadcaster_spawner
     ])
